@@ -36,108 +36,75 @@ const Cart = ({ cartAllProduct, setCartAllProduct }) => {
 
   const getTotalPrice = () => {
     return cartAllProduct.reduce((total, product) => {
-      return total + (product.price * counts[product._id]);
+      return total + product.price * counts[product._id];
     }, 0);
   };
 
   return (
-    <div className='my-20'>
-      <h1 className='text-3xl ml-20 font-semibold'>YOUR CART</h1>
-      <div className='mt-20 mx-20'>
-        <div className="w-full">
-          {cartAllProduct?.map((product) => (
-            <div className="items-center flex justify-between border-b pb-4 m-10" key={product._id}>
-              <div className="flex items-center">
-                <img src={product.image} alt="Product" className="w-40 h-36 rounded-lg object-cover" />
-                <div className="ml-4">
-                  <h2 className="text-xl font-semibold">{product.name}</h2>
-                </div>
-              </div>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => decrement(product)}
-                  className="px-4 py-2 bg-gray-200 text-black rounded-md hover:bg-gray-300"
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  className="w-16 h-10 text-center border border-gray-300 rounded-md"
-                  value={counts[product._id]}
-                  readOnly
-                />
-                <button
-                  onClick={() => increment(product)}
-                  className="px-4 py-2 bg-gray-200 text-black rounded-md hover:bg-gray-300"
-                >
-                  +
-                </button>
-              </div>
-              <div>
-                <p className="text-lg font-semibold">${(counts[product._id] * product.price).toFixed(2)}</p>
-              </div>
-              <button className="text-red-500 text-2xl hover:text-red-700"
-                onClick={() => handleDeleteCart(product._id)}
-              >
-                <RiDeleteBin5Line />
-              </button>
+    <div className='my-10 px-4 md:px-20 md:mt-20'>
+      <h1 className='text-2xl md:text-3xl font-semibold text-center md:text-left'>YOUR CART</h1>
+      <div className='mt-10 space-y-6'>
+        {cartAllProduct?.map((product) => (
+          <div className="flex flex-col md:flex-row items-center justify-between border-b pb-4" key={product._id}>
+            <div className="flex items-center space-x-4">
+              <img src={product.image} alt="Product" className="w-24 h-24 md:w-40 md:h-36 rounded-lg object-cover" />
+              <h2 className="text-lg md:text-xl font-semibold">{product.name}</h2>
             </div>
-          ))}
-        </div>
+            <div className="flex items-center space-x-2 mt-4 md:mt-0">
+              <button onClick={() => decrement(product)} className="px-3 py-1 bg-gray-200 rounded-md">-</button>
+              <input type="number" className="w-12 text-center border rounded-md" value={counts[product._id]} readOnly />
+              <button onClick={() => increment(product)} className="px-3 py-1 bg-gray-200 rounded-md">+</button>
+            </div>
+            <p className="text-lg font-semibold mt-4 md:mt-0">${(counts[product._id] * product.price).toFixed(2)}</p>
+            <button className="text-red-500 text-xl md:text-2xl" onClick={() => handleDeleteCart(product._id)}>
+              <RiDeleteBin5Line />
+            </button>
+          </div>
+        ))}
       </div>
 
       {/* Checkout Section */}
-      <div className='mt-20'>
-        <div className="flex justify-end">
-          {/* Delivery Info */}
-          {showInfo && (
-            <div className="p-4 ml-20 rounded-lg">
-              <RxCross2 className='ml-[500px] text-2xl cursor-pointer' onClick={()=>{setShowInfo(false)}} />
-
-              <h2 className="text-3xl mb-10 font-semibold">DELIVERY INFORMATION</h2>
-              <div className='flex'>
-                <input type="text" placeholder='First Name' className='w-60 h-8 border rounded text-xl p-5 font-normal font-sans border-gray-200 ' />
-                <input type="text" placeholder='Last Name' className='w-60 h-8 border rounded text-xl p-5 font-normal ml-4 font-sans border-gray-200 ' />
-              </div>
-              <input type="text" placeholder='Email Address' className='w-[500px] h-11 rounded border text-gray-950 mt-4 text-xl p-3 border-gray-300' />
-              <input type="text" placeholder='Street' className='w-[500px] h-11 rounded border text-gray-950 mt-4 text-xl p-3 border-gray-300' />
-              <div className='flex'>
-                <input type="text" placeholder='City' className='w-60 h-8 border rounded text-xl p-5 font-normal mt-4 font-sans border-gray-200 ' />
-                <input type="text" placeholder='State' className='w-60 h-8 border rounded text-xl p-5 font-normal mt-4 ml-4 font-sans border-gray-200 ' />
-              </div>
-              <div className='flex'>
-                <input type="text" placeholder='Zipcode' className='w-60 h-8 border mt-4 rounded text-xl p-5 font-normal font-sans border-gray-200 ' />
-                <input type="text" placeholder='Country' className='w-60 h-8 border mt-4 rounded text-xl p-5 font-normal ml-4 font-sans border-gray-200 ' />
-              </div>
-              <input type="text" placeholder='Phone' className='w-[500px] h-11 rounded border text-gray-950 mt-4 text-xl p-3 border-gray-300' />
+      <div className='mt-10 flex flex-col md:flex-row justify-between items-center md:items-start'>
+        {showInfo && (
+          <div className="w-full md:w-1/2 p-4 border rounded-lg shadow-md">
+            <RxCross2 className='text-xl cursor-pointer ml-auto' onClick={() => setShowInfo(false)} />
+            <h2 className="text-xl font-semibold text-center">DELIVERY INFORMATION</h2>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
+              <input type="text" placeholder='First Name' className='border p-2 rounded' />
+              <input type="text" placeholder='Last Name' className='border p-2 rounded' />
+              <input type="text" placeholder='Email Address' className='border p-2 rounded md:col-span-2' />
+              <input type="text" placeholder='Street' className='border p-2 rounded md:col-span-2' />
+              <input type="text" placeholder='City' className='border p-2 rounded' />
+              <input type="text" placeholder='State' className='border p-2 rounded' />
+              <input type="text" placeholder='Zipcode' className='border p-2 rounded' />
+              <input type="text" placeholder='Country' className='border p-2 rounded' />
+              <input type="text" placeholder='Phone' className='border p-2 rounded md:col-span-2' />
             </div>
-          )}
-
-          {/* Cart Totals */}
-          <div className="w-96 mt-20 mr-36 p-6 rounded-md border shadow-lg">
-            <h1 className="text-2xl font-semibold font-serif text-center">CART TOTALS</h1>
-            <div className="mt-6 space-y-4">
-              <div className="flex justify-between">
-                <h1 className="text-lg font-medium">Subtotal</h1>
-                <h1 className="text-lg font-medium">${getTotalPrice().toFixed(2)}</h1>
-              </div>
-              <hr />
-              <div className="flex justify-between">
-                <h1 className="text-lg font-medium">Shipping Fee</h1>
-                <h1 className="text-lg font-medium">$10.00</h1>
-              </div>
-              <hr />
-              <div className="flex justify-between">
-                <h1 className="text-lg font-semibold">Total</h1>
-                <h1 className="text-lg font-semibold">${(getTotalPrice() + 10).toFixed(2)}</h1>
-              </div>
-            </div>
-
-            {/* Checkout Button */}
-            <button onClick={handleClick} className="w-56 mt-6 py-3 ml-28 text-white bg-black">
-              {buttonText}
-            </button>
           </div>
+        )}
+
+        {/* Cart Totals */}
+        <div className="w-full md:w-1/3 mt-10 md:mt-0 p-6 border rounded-lg shadow-md">
+          <h1 className="text-xl font-semibold text-center">CART TOTALS</h1>
+          <div className="mt-6 space-y-2">
+            <div className="flex justify-between">
+              <h1 className="text-lg">Subtotal</h1>
+              <h1 className="text-lg">${getTotalPrice().toFixed(2)}</h1>
+            </div>
+            <hr />
+            <div className="flex justify-between">
+              <h1 className="text-lg">Shipping Fee</h1>
+              <h1 className="text-lg">$10.00</h1>
+            </div>
+            <hr />
+            <div className="flex justify-between font-semibold">
+              <h1 className="text-lg">Total</h1>
+              <h1 className="text-lg">${(getTotalPrice() + 10).toFixed(2)}</h1>
+            </div>
+          </div>
+          <button onClick={handleClick} className="w-full mt-6 py-2 bg-black text-white rounded">
+            {buttonText}
+          </button>
         </div>
       </div>
     </div>

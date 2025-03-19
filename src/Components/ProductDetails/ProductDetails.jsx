@@ -48,10 +48,11 @@ const ProductDetails = ({ setProductId }) => {
 
 
       <div className="flex flex-col md:flex-row items-center md:items-start mt-10 md:mt-20">
-        <div className="flex flex-col md:flex-row items-center md:items-start">
-          <img src={product?.image} alt={product?.name} className="w-36 h-36 md:w-56 md:h-32 mx-2" />
-          <img src={product?.image} alt={product?.name} className="w-full md:w-[600px] mt-4 md:mt-0" />
-        </div>
+      <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-4">
+  <img src={product?.image} alt={product?.name} className="w-24 h-24 md:w-56 md:h-56 object-cover rounded-lg" />
+  <img src={product?.image} alt={product?.name} className="w-full md:w-[600px] object-cover rounded-lg" />
+</div>
+
 
         <div className="md:ml-10 w-full md:w-1/2">
           <h1 className="mt-6 md:mt-16 text-2xl md:text-3xl font-semibold font-serif text-center md:text-left">{product?.name}</h1>
