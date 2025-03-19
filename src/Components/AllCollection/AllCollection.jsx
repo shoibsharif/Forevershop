@@ -47,7 +47,7 @@ const AllProducts = () => {
         {/* Product Grid */}
         <div className="w-full md:w-3/4">
           <h1 className="text-2xl font-semibold font-sans mb-6">ALL COLLECTIONS</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
                 <Link

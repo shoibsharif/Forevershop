@@ -10,13 +10,13 @@ const Subscribe = () => {
             <p className='mt-3 text-gray-600 max-w-md'>
                 Stay updated with our latest offers and news. Enter your email below to subscribe.
             </p>
-            <div className='flex flex-col md:flex-row items-center  mt-6 w-full max-w-md'>
+            <div className='flex flex-row md:flex-row items-center  mt-6 w-full max-w-md'>
                 <input 
                     type='email' 
                     placeholder='Enter your email' 
                     className='text-center p-3 w-full border border-gray-400  focus:outline-none focus:ring-2 focus:ring-black'
                 />
-                <button className='bg-black text-white p-7 h-13 py-3  hover:bg-gray-800 transition duration-300'>
+                <button className='bg-black flex text-white p-7 h-13 py-3  hover:bg-gray-800 transition duration-300'>
                     Subscribe
                 </button>
             </div>

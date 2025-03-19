@@ -21,15 +21,15 @@ function LatestCollection() {
   return (
     <div className="max-w-[1230px] mx-auto px-4">
       {/* Section Title */}
-      <h1 className="text-3xl md:text-4xl text-center font-medium font-serif py-8 flex items-center justify-center">
+      <h1 className="text-2xl md:text-4xl text-center font-medium font-serif py-8 flex items-center justify-center">
         <span className="mr-3 font-medium text-gray-500">LATEST</span> COLLECTIONS
         <hr className="w-[70px] ml-4 border-black" />
       </h1>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
         {latestCollection?.map((product) => (
-          <div className="p-4  " key={product?._id}>
+          <div className="p-2  " key={product?._id}>
               <Link onClick={handleClick}
               key={product?._id}
               to={`/ProductDetail/${product?._id}`}

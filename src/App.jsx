@@ -33,7 +33,7 @@ const App = () => {
 
 
   return (
-    <div>
+    <div className='  '>
       <Navbar cartAllProduct={cartAllProduct} />
       <Routes>
         <Route path='/' element={<Home  />}></Route>
