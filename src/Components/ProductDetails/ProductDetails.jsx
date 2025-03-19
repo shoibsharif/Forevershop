@@ -4,6 +4,8 @@ import productList from "../../assets/frontend_assets/assets";
 import { FaStar } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
+import toast, { Toaster } from 'react-hot-toast';
+
 // eslint-disable-next-line react/prop-types
 const ProductDetails = ({ setProductId }) => {
   const { _id } = useParams(); // Get product ID from URL
@@ -34,6 +36,7 @@ const ProductDetails = ({ setProductId }) => {
   const handleAddToCart = (_id) => {
 
     setProductId(_id);
+    toast.success('product added sucssesfully');
 
 
 
@@ -87,7 +90,13 @@ const ProductDetails = ({ setProductId }) => {
               Selected Size: {selectedSize}
             </p>
           )}
-          <button className="mt-6 w-full md:w-44 p-4 bg-black text-white h-14 cursor-pointer rounded-md" onClick={() => handleAddToCart(product._id)}>Add to Cart</button>
+          <div  >
+          <Toaster/>
+          <button className="mt-6 w-full md:w-44 p-4 bg-black text-white h-14 cursor-pointer rounded-md" onClick={() =>  handleAddToCart(product._id)} >Add to Cart</button>
+
+          
+          </div>
+          
           <hr className="mt-7 w-full md:w-96 text-gray-500" />
           <p className="mt-6 text-[14px] md:text-[16px] font-semibold text-gray-600 text-center md:text-left">
             100% Original product.<br />
